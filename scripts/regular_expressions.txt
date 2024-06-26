@@ -1,0 +1,10 @@
+Regular Expressions
+
+El archivo protein.faa, fue editado en regular expressions, de la sigueinte manera:
+
+Find: \w-\w\s\[\w+=\w+\s\w+\]\s\[\w+\=\d+\]
+
+Replace:  (se deja vacio)
+
+Con esto se pudo filtar el codigo de las proteinas correspondientes a cada transcript pertenecientes 
+al gen RS en R1 el cual es componente del color de las semillas en Zea mays.

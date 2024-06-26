@@ -1,0 +1,68 @@
+---
+title: "Filogenia de Zea Mays"
+author: "Shannon Serpa"
+date: "2024-06-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Establecer directorio
+```{r}
+getwd()
+```
+# Instalar paquetes 
+```{r}
+#if (!require("BioManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+#install.packages('coda')
+#install.packages('phytools')
+#install.packages('BAMMtools')
+
+#BiocManager::install("ggtree")
+```
+# Cargar libreria
+```{r}
+library("ggtree")
+library('BAMMtools')
+library('ape') 
+library('coda')
+library('phytools')
+```
+# Leer archivo (Newik) de filogenia de Tripsacine-Sclerostachya
+```{r}
+tree <- read.tree("Tripsacinae--Sclerostachya.tre")
+```
+# Escribe el archivo con la nueva extensión
+```{r}
+write.tree(tree, file = "Tripsacinae--Sclerostachya.tre")
+```
+# Visualizar el árbol filogenético
+```{r}
+plot(tree, main = "Tripsacinae--Sclerostachya.tre")
+```
+```{r}
+zoom(tree, grep("Zea", tree$tip.label), cex = 0.6)
+```
+
+# Encontrar un numero de nodo de un ancestro en comun de dos especies
+```{r}
+MRCA <- getMRCA(tree, tip = c("Zea_hybr_ott3954930", "Zea_luxurians_ott6065"))
+MRCA
+```
+
+# Extraer el clado de Zea mays de toda una fiogenia pero colocando el numero
+```{r}
+ZeaTree <- extract.clade(tree, node = 1114)
+plot(ZeaTree, cex = 0.5)
+```
+
+# Guardar el arbol 
+```{r}
+write.tree(ZeaTree, "ZeaTree.tree")
+```
+```
+
+
